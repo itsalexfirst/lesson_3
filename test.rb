@@ -1,3 +1,7 @@
+require_relative 'train'
+require_relative 'route'
+require_relative 'station'
+
 station1 = Station.new('One')
 station2 = Station.new('Two')
 station3 = Station.new('Three')
@@ -8,7 +12,7 @@ route1 = Route.new(station1, station4)
 route1.add_station(station2)
 route1.add_station(station3)
 route1.add_station(station5)
-route.list
+route1.stations
 route1.remove_station(station5)
 
 
@@ -22,16 +26,16 @@ train1.add_carriage
 train1.carriage
 train1.add_carriage
 train1.remove_carriage
-train.stop
+train1.stop
 train1.carriage
 train1.add_carriage
 train1.remove_carriage
 
 
-train1.add_route(1)
-train2.add_route(1)
+train1.add_route(route1)
+train2.add_route(route1)
 
-station1.train_list
+station1.trains
 stattion1.train_type_list('pass')
 
 train1.current_station
