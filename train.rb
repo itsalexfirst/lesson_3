@@ -36,10 +36,11 @@ class Train
   end
 
   def current_station
-    @current_route.stations.each{ |station| return station if station.trains.include?(self) }
+    @current_route.stations.find{ |station| station.trains.include?(self) }
   end
 
   def current_station_index
+    puts @current_route.stations.index(current_station)#
     @current_route.stations.index(current_station)
   end
 
@@ -48,22 +49,20 @@ class Train
   end
 
   def next_station
-    @current_route.stations[@current_station_index + 1] if current_station != @current_route.stations.last
+    @current_route.stations[current_station_index + 1] if current_station != @current_route.stations.last
   end
 
   def go_next
-    if next_station
+    return unless next_station
       departure_station = current_station
       next_station.take_train(self)
       departure_station.send_train(self)
-    end
   end
 
   def go_prev
-    if prev_station
+    return unless prev_station
       departure_station = current_station
       prev_station.take_train(self)
       departure_station.send_train(self)
-    end
   end
 end
